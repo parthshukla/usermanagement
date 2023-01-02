@@ -1,0 +1,27 @@
+{
+    "name": "parthshukla/usermanagement-laravel",
+    "description": "",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Parth Shukla",
+            "email": "shuklaparth@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ParthShukla\\UserManagement\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ParthShukla\\UserManagement\\RegistrationServiceProvider"
+            ]
+        }
+    }
+}
+
