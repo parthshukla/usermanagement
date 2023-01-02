@@ -19,7 +19,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "ParthShukla\\UserManagement\\RegistrationServiceProvider"
+                "ParthShukla\\UserManagement\\UserManagementServiceProvider"
             ]
         }
     }
