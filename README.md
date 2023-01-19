@@ -6,6 +6,7 @@ a laravel application.
 
 ##### User Management
 - [List All Users](#users-list)
+- [Change Account Status](#user-account-status-change)
 
 
 ### <a name="users-list">List All Users</a>
@@ -60,4 +61,22 @@ This api end point will be used for listing all the users in the application.
     }
 }
 
+```
+### <a name="user-account-status-change">Change Account Status</a>
+This api end point will be used for changing the status of the user account.
+###### API End Point: /api/user_accounts/status/change
+###### Request Type: POST
+###### Request Body:
+```
+{
+    "userId": "1",
+    "status": "pending"
+}
+
+```
+###### Response Body
+```
+{
+    "message": "Account status changed successfully"
+}
 ```
