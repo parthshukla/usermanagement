@@ -3,6 +3,7 @@
 namespace ParthShukla\UserManagement\Library\Application;
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use ParthShukla\UserManagement\Http\Resources\UserAccountCollection;
 
 /**
@@ -67,6 +68,44 @@ class UserAccountReader
         $pageLimit = (request()->has('limit') && request('limit') > 0) ?
             request('limit') : config('ps-usrmgmt.perPageResultLimit');
         return new UserAccountCollection($query->paginate($pageLimit));
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Returns the User Account summary.
+     *
+     * @return mixed[]
+     */
+    public function getUserAccountSummary()
+    {
+        $arrResult = ['pending' => 0, 'active' => 0, 'blocked' => 0];
+
+        $result = $this->readUserAccountSummary();
+
+        foreach ($result as $row)
+        {
+            $arrResult[$row->status] = $row->user_count;
+        }
+
+        return $arrResult;
+
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
+     * Reads and returns the user account summary counts based on the account
+     * status
+     *
+     * @return mixed
+     */
+    protected function readUserAccountSummary()
+    {
+        return $this->user->groupBy('status')
+                ->whereNull('deleted_at')  //excluding the deleted accounts
+                ->select(DB::raw('status, count(id) as user_count'))
+                ->get();
     }
 }
 // end of class UserAccountReader

@@ -7,6 +7,7 @@ a laravel application.
 ##### User Management
 - [List All Users](#users-list)
 - [Change Account Status](#user-account-status-change)
+- [Account Summary Count](#user-account-summary-count)
 
 
 ### <a name="users-list">List All Users</a>
@@ -78,5 +79,20 @@ This api end point will be used for changing the status of the user account.
 ```
 {
     "message": "Account status changed successfully"
+}
+```
+### <a name="user-account-summary-count">Account Summary Counts</a>
+This api end point will be used for getting the summary of account counts
+based on the status.
+###### API End Point: /api/user_accounts/summary
+###### Request Type: GET
+###### Response Body
+```
+{
+    "data": {
+        "pending": 20,
+        "active": 7,
+        "blocked": 1
+    }
 }
 ```
