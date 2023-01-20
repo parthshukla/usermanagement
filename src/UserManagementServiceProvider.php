@@ -2,6 +2,7 @@
 namespace ParthShukla\UserManagement;
 
 use Illuminate\Support\ServiceProvider;
+use ParthShukla\UserManagement\Providers\EventServiceProvider;
 
 /**
  * UserManagementServiceProvider
@@ -35,6 +36,7 @@ class UserManagementServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ps-usrmgmt');
+        $this->app->register(EventServiceProvider::class);
     }
 }
 // end of class UserManagementServiceProvider

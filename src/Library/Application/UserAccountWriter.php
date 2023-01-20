@@ -3,6 +3,7 @@
 namespace ParthShukla\UserManagement\Library\Application;
 
 use App\Models\User;
+use ParthShukla\UserManagement\Events\UserAccountStatusUpdated;
 
 /**
  * UserAccountWriter
@@ -24,6 +25,8 @@ class UserAccountWriter
     //-------------------------------------------------------------------------
 
     /**
+     * Constructor
+     *
      * @param User $user
      */
     public function __construct(User $user)
@@ -46,7 +49,9 @@ class UserAccountWriter
 
         //updating the status
         $user->status = $data['status'];
-        return $user->save();
+        $user->save();
+        event(new UserAccountStatusUpdated($user, $data['status']));
+        return true;
     }
 
 }
